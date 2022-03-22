@@ -1,8 +1,7 @@
-from unittest.mock import patch
 import pprint
 from numpy import inner
+from type import Interface
 from Modules import Data_Load_and_Preprocess,Population_generation,Fitness_function,Selection_strategy,Crossover
-
 
 
 #Data loading & Preprocessing
@@ -12,15 +11,16 @@ Data2=[]
 rows=0
 rows,Data1,Data2=Data_Load_and_Preprocess.Data_Loading_and_Preprocessing(path)
 
+Interface.call_intf()
 
+Interface.call_ac()
 #Population generation
-
 pop=[]
 
 pop=Population_generation.Population_gen(rows,Data1,Data2)
 
 All_orders=[]
-count=0
+
 for curr_pop in pop:
     # print(curr_pop)
     inner_pop=[]
@@ -51,12 +51,9 @@ for curr_pop in pop:
     for i in final_check:
         if final_check[i][1]<min[1]:
             min=final_check[i]
-    # print(min)
-    # All_orders.append(min)
-    count+=1
-    print(count)
+    All_orders.append(min)
 
-
+pprint.pprint(len(All_orders))
 
 
 
